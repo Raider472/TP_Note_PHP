@@ -31,9 +31,8 @@
 
     class ConnexionIUT {
         private PDO $db;
-        function __construct(string $SGBD, string $Host, string $dbName, string $User, string $Password) {
+        function __construct(string $SGBD, string $dbName, string $User, string $Password) {
             $db_config["SGBD"] = $SGBD;
-            $db_config["HOST"] = $Host;
             $db_config["DB_NAME"] = $dbName;
             $db_config["USER"] = $User;
             $db_config["PASSWORD"] = $Password;

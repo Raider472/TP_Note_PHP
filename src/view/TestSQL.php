@@ -9,8 +9,8 @@
 <body>
     <h1>Test BDD</h1>
     <?php
-        require("../model/Connexion.php");
-        $dbo = new ConnexionDocker("mysql", "dbTp", "Infraction");
+        require("../model/FonctionConnexion.php");
+        $dbo = choixConnexion();
         $requete = $dbo->execSQL("SELECT * FROM conducteur");
         var_dump($requete);
     ?>
