@@ -1,8 +1,8 @@
 <?PHP
     session_start();
 
-    $identifiants['login'] = isset($_SESSION[$identifiants['login']])?$_SESSION[$identifiants['login']]:null;
-    $identifiants['password'] = isset($_SESSION[$identifiants['password']])?$_SESSION[$identifiants['password']]:null;
+    $identifiants['login'] = isset($_POST[$identifiants['login']])?$_POST[$identifiants['login']]:"";
+    $identifiants['password'] = isset($_POST[$identifiants['password']])?$_POST[$identifiants['password']]:"";
 
     function connexionValidee(array $identifiants): bool {
         $validee = false;

@@ -4,12 +4,19 @@ body {
 
 header {
     margin: auto;
-    width: 400px;
+    margin-top : 15px;
+    margin-bottom : 15px;
+    text-align: center;
+    width: 25em;
+    height: 10em;
+    border: 1px solid black;
 }
 
 #login-page {
     margin: auto;
     text-align: center;
-    width: 400px;
-    height: 300px;
+    padding : 1em 2em 1em 2em;
+    width: 10em;
+    height: 15em;
+    border: 1px solid black;
 }

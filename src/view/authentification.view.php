@@ -15,9 +15,9 @@
     <section>
         <div id="login-page">
             <label for="login">Numéro de permis :</label>
-            <input type="text" name="login" placeholder="Entrez votre numéro de permis ici" value="<?= $_SESSION[$identifiants['login']]?>">
+            <input type="text" name="login" placeholder="Entrez votre numéro de permis ici" value="<?= $identifiants['login']?>">
             <label for="password">Mot de passe :</label>
-            <input type="text" name="password" placholder="Entrez votre mot de passe ici" value="<?= $_SESSION[$identifiants['password']]?>">
+            <input type="text" name="password" placholder="Entrez votre mot de passe ici" value="<?= $identifiants['password']?>">
         </div>
     </section>
 </body>
