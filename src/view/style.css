@@ -7,16 +7,39 @@ header {
     margin-top : 15px;
     margin-bottom : 15px;
     text-align: center;
-    width: 25em;
-    height: 10em;
-    border: 1px solid black;
+    max-width: 60%;
+    max-height: 15%;
+    border: 100px dotted rgba(0, 255, 34, 0.4);
+    background-image: url("../view/assets/it.png");
+    background-size: 80%;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 #login-page {
     margin: auto;
     text-align: center;
-    padding : 1em 2em 1em 2em;
-    width: 10em;
-    height: 15em;
-    border: 1px solid black;
+    max-width: 40%;
+    height: 30%;
+    padding: 0 2em 0 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+fieldset {
+    border: 3px dotted blue;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 30px;
+}
+
+label {
+    font-size: 20px;
+}
+
+input#submit {
+    font-size: 20px;
+    background-color: gray;
+    text-align: center;
+    color: white;
 }
