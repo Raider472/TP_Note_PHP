@@ -1,0 +1,35 @@
+version: '3.3'
+
+services:
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports: 
+      - 8100:80
+    volumes:
+      - ./src/:/var/www/html/
+
+  db:
+    image: mysql
+    restart: unless-stopped
+    container_name: dbTp
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      timeout: 30s
+      interval: 2s
+      retries: 30
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: unless-stopped
+    container_name: phpmyadminTp
+    ports:
+      - 8020:80
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - PMA_ARBITRARY=1
