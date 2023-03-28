@@ -13,6 +13,7 @@
         $jaaj = new LesConducteurs();
         $jaaj->fetchAllConducteur();
         $jaaj->DisplayAllConducteur();
+        $jaaj->fetchConducteurByLoginAndPassword("AZ67", "airpach");
     ?>
 </body>
 </html>
