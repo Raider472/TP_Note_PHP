@@ -12,6 +12,7 @@
         require("../model/LesConducteurs.php");
         $jaaj = new LesConducteurs();
         $jaaj->fetchAllConducteur();
+        $jaaj->DisplayAllConducteur();
     ?>
 </body>
 </html>
