@@ -4,7 +4,7 @@
         private int $id_inf;
         private string $date_inf;
         private string $no_immat;
-        private string $no_permis;
+        private string | null $no_permis;
 
         function __construct($id_inf, $date_inf, $no_immat, $no_permis) {
             $this->id_inf = $id_inf;

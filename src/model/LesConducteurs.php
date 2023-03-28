@@ -15,6 +15,7 @@
         function fetchAllConducteur() {
             $dbo = choixConnexion();
             $requete = $dbo->execSQL("SELECT * FROM conducteur"); //Recupère tous les conducteur de la table Conducteur
+            unset($dbo);
             $conducteur = [];
             foreach($requete as $lesrequeteTab) { //Créer les conducteurs grâce à la classe conducteur et les push dans l'array $conducteur
                 $conducteur[] = new Conducteur(
@@ -27,6 +28,30 @@
             }
             //echo $conducteur[1]->getMdp(); //Recupère et Affiche le mdp du deuxième conducteur
             $this->setArrayTab($conducteur);
+        }
+
+        function fetchConducteurByLoginAndPassword(string $login, string $password) {
+            $dbo = choixConnexion();
+            $requete = $dbo->execSQL("SELECT * FROM conducteur WHERE no_permis = \"$login\" AND mdp = \"$password\"");
+            unset($dbo);
+            if (count($requete) === 0) {
+                echo "Le mot de passe ou le login est eronnée .";
+            }
+            else { //TODO Ajouter les effects quand la connexion est bien faite
+                echo "Le mot de passe est cool mec";
+                $conducteur = [];
+                foreach($requete as $lesrequeteTab) {
+                    $conducteur[] = new Conducteur(
+                        $lesrequeteTab["no_permis"],
+                        $lesrequeteTab["date_permis"],
+                        $lesrequeteTab["nom"],
+                        $lesrequeteTab["prenom"],
+                        $lesrequeteTab["mdp"]
+                    );
+                }
+                $this->setArrayTab($conducteur);
+                echo $this->conducteursTab[0]->getDatePermis();
+            }
         }
 
         function DisplayAllConducteur() { //Pour display tous les conducteurs avec leur informations 
