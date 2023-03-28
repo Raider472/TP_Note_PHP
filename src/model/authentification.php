@@ -1,4 +1,5 @@
 <?PHP
+    require("../view/authentification.view.php");
     session_start();
 
     $identifiants['login'] = isset($_POST[$identifiants['login']])?$_POST[$identifiants['login']]:"";
@@ -9,7 +10,7 @@
         $login = isset($_SESSION['login']);
         $password = isset($_SESSION['password']);
 
-        require_once 'Connexion.php';
+        require ('Connexion.php');
         $db = new Connexion();
         $req = "SELECT num_permis, date_permis, nom_permis, prenom_permis, mdp
                 FROM CONDUCTEUR WHERE num_permis = :login AND mdp = :password";
@@ -25,5 +26,5 @@
             $message = "Vos identifiants n'ont pas été trouvés dans notre base de données, veuillez réssayer !";
         }   
     }
-    require_once("../view/authentification.view.php");
+
 ?>

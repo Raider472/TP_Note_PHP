@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="authentification.css">
     <title>Authetification</title>
 </head>
 <body>
     <header>
         <h1>Bienvenue sur Amende PHP</h1>
-        <p>Veuillez entrer vos identifiants pour visualiser vos amendes</p>
+        <p>Veuillez entrer votre numéro de permis et votre mot de passe pour visualiser vos amendes</p>
     </header>
     <section>
         <div id="login-page">

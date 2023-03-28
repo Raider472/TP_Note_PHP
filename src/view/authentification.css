@@ -6,31 +6,30 @@ header {
     margin: auto;
     margin-top : 15px;
     margin-bottom : 15px;
+    padding: 5em 0 5em 0;
     text-align: center;
-    max-width: 60%;
-    max-height: 15%;
-    border: 100px dotted rgba(0, 255, 34, 0.4);
     background-image: url("../view/assets/it.png");
-    background-size: 80%;
+    background-size: 30%;
     background-position: center;
     background-repeat: no-repeat;
 }
 
 #login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: auto;
     text-align: center;
-    max-width: 40%;
     height: 30%;
     padding: 0 2em 0 2em;
-    padding-top: 1em;
-    padding-bottom: 1em;
 }
 
 fieldset {
-    border: 3px dotted blue;
+    border: 3px ridge gray;
     text-align: center;
     font-weight: bolder;
     font-size: 30px;
+    max-width: 30%;
 }
 
 label {
@@ -39,7 +38,7 @@ label {
 
 input#submit {
     font-size: 20px;
-    background-color: gray;
+    background-color: goldenrod;
     text-align: center;
     color: white;
 }
