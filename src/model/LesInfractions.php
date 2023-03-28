@@ -28,12 +28,22 @@ class LesInfractions {
             $this -> setInfractionsTab($infractions);
         }
 
+    public function displayAllInfractions() { // Affiche les toutes les infractions actuellement dans la base de données.
+        foreach($this -> infractionsTab as $LesInfractions) {
+            echo "<p>" . $LesInfractions -> getIdInf . $LesInfractions -> getDateInf . $LesInfractions -> getNoImmat . $LesInfractions -> getNoPermis . "</p>";
+        }
+    }
+
     public function fetchInfractionByPermis() { // Récupère les infractions avec comme clé le numéro de permis.
         $dbo = choixConnexion();
         $req = $dbo -> execSQL("SELECT id_inf, date_inf, no_immat, no_permis FROM infraction i, conducteur c WHERE i.no_permis=c.no_permis");
+    }
+
+    public function displayInfractionByPermis() {
+        $req = $this -> fetchInfractionByPermis();
         foreach($req as $clé) {
-            echo "<table> <th> <tr>".$clé["no_permis"].$clé["ind_inf"].$clé["date_inf"].$clé["no_immat"]."</tr> </th> </table>" ;
-        }
+
+        };
     }
 }
 
