@@ -29,7 +29,7 @@ fieldset {
     text-align: center;
     font-weight: bolder;
     font-size: 30px;
-    max-width: 30%;
+    width: 30%;
 }
 
 label {
