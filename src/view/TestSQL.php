@@ -9,10 +9,9 @@
 <body>
     <h1>Test BDD</h1>
     <?php
-        require("../model/FonctionConnexion.php");
-        $dbo = choixConnexion();
-        $requete = $dbo->execSQL("SELECT * FROM conducteur");
-        var_dump($requete);
+        require("../model/LesConducteurs.php");
+        $jaaj = new LesConducteurs();
+        $jaaj->fetchAllConducteur();
     ?>
 </body>
 </html>
