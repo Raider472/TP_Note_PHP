@@ -42,6 +42,13 @@
             }
         }
 
+        function fetchConducteurByNoPermis(string $permis) {
+            $dbo = choixConnexion();
+            $requete = $dbo->execSQL("SELECT * FROM conducteur WHERE no_permis = \"$permis\"");
+            unset($dbo); 
+            //TODO Le reste à faire
+        }
+
         function DisplayAllConducteur() { //Pour display tous les conducteurs avec leur informations 
             foreach ($this->conducteursTab as $LesConducteurs) {
                 echo "<p>" . $LesConducteurs->getNoPermis() . " | " . $LesConducteurs->getDatePermis() . " | " . $LesConducteurs->getNom() . " | " . $LesConducteurs->getPrenom() . " | " . $LesConducteurs->getMdp() . "</p>";

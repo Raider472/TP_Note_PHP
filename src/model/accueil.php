@@ -1,5 +1,5 @@
 <?php
     session_start();
-    $message = "";
+    $message = $_SESSION['login'];
     include("../view/accueil.view.php");
 ?>
