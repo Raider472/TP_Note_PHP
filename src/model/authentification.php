@@ -13,6 +13,9 @@
             $message = $_SESSION['login'];
             header("Location: accueil.php");
         }
+        else {
+            $message = "Le mot de passe et/ou le n° de permis est incorrect";
+        }
     }
     include("../view/authentification.view.php");
 ?>
