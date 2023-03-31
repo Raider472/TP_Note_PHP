@@ -42,3 +42,9 @@ input#submit {
     text-align: center;
     color: white;
 }
+
+.messageErreur {
+    color: red;
+    text-align: center;
+    font-size: 150%;
+}

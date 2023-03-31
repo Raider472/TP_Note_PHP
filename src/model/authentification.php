@@ -1,30 +1,21 @@
 <?PHP
-    require("../view/authentification.view.php");
     session_start();
-
-    $identifiants['login'] = isset($_POST[$identifiants['login']])?$_POST[$identifiants['login']]:"";
-    $identifiants['password'] = isset($_POST[$identifiants['password']])?$_POST[$identifiants['password']]:"";
-
-    function connexionValidee(array $identifiants): bool {
-        $validee = false;
-        $login = isset($_SESSION['login']);
-        $password = isset($_SESSION['password']);
-
-        require ('Connexion.php');
-        $db = new Connexion();
-        $req = "SELECT num_permis, date_permis, nom_permis, prenom_permis, mdp
-                FROM CONDUCTEUR WHERE num_permis = :login AND mdp = :password";
-        $res = $db -> execSQL ($req, [':num_permis' => $login, ':mdp' => $password]);
-        if (isset($res[0])) $validee = true;
+    require("../model/function/verificationConnexion.php");
+    $identifiants['login'] = (isset($_POST['login'])?$_POST['login']:"");
+    $identifiants['password'] = (isset($_POST['password'])?$_POST['password']:"");
+    $message = "";
+    $_SESSION['login'] = "";
+    if (isset($_POST['login'])) {
+        if (verificationConnexion($identifiants['login'], $identifiants['password']) === true) {
+            $_SESSION['login'] = $identifiants['login'];
+            $identifiants['login'] = "";
+            $identifiants['password'] = "";
+            $message = $_SESSION['login'];
+            header("Location: accueil.php");
+        }
+        else {
+            $message = "Le mot de passe et/ou le n° de permis est incorrect";
+        }
     }
-
-    if (isset($_POST['Connexion'])) {
-        if (connexionValidee($identifiants)) {
-            $_SESSION[$identifiants['login']] = $identifiants['login'];
-            header('location: accueil.php');
-        } else {
-            $message = "Vos identifiants n'ont pas été trouvés dans notre base de données, veuillez réssayer !";
-        }   
-    }
-
+    include("../view/authentification.view.php");
 ?>

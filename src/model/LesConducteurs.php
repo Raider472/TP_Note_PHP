@@ -23,35 +23,30 @@
                     $lesrequeteTab["date_permis"],
                     $lesrequeteTab["nom"],
                     $lesrequeteTab["prenom"],
-                    $lesrequeteTab["mdp"]
+                    $lesrequeteTab["mdp_encrypter"]
                 );
             }
             //echo $conducteur[1]->getMdp(); //Recupère et Affiche le mdp du deuxième conducteur
             $this->setArrayTab($conducteur);
         }
 
-        function fetchConducteurByLoginAndPassword(string $login, string $password) {
+        function fetchConducteurByLoginAndPassword(string $login, string $password): bool {
             $dbo = choixConnexion();
-            $requete = $dbo->execSQL("SELECT * FROM conducteur WHERE no_permis = \"$login\" AND mdp = \"$password\"");
+            $requete = $dbo->execSQL("SELECT * FROM conducteur WHERE no_permis = \"$login\" AND mdp_encrypter = AES_ENCRYPT(\"$password\", \"mysecretkey\")");
             unset($dbo);
-            if (count($requete) === 0) {
-                echo "Le mot de passe ou le login est eronnée .";
+            if (count($requete) != 0) {
+                return true;
             }
-            else { //TODO Ajouter les effects quand la connexion est bien faite
-                echo "Le mot de passe est cool mec";
-                $conducteur = [];
-                foreach($requete as $lesrequeteTab) {
-                    $conducteur[] = new Conducteur(
-                        $lesrequeteTab["no_permis"],
-                        $lesrequeteTab["date_permis"],
-                        $lesrequeteTab["nom"],
-                        $lesrequeteTab["prenom"],
-                        $lesrequeteTab["mdp"]
-                    );
-                }
-                $this->setArrayTab($conducteur);
-                echo $this->conducteursTab[0]->getDatePermis();
+            else {
+                return false;
             }
+        }
+
+        function fetchConducteurByNoPermis(string $permis) {
+            $dbo = choixConnexion();
+            $requete = $dbo->execSQL("SELECT * FROM conducteur WHERE no_permis = \"$permis\"");
+            unset($dbo); 
+            //TODO Le reste à faire
         }
 
         function DisplayAllConducteur() { //Pour display tous les conducteurs avec leur informations 
