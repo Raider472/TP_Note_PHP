@@ -42,7 +42,6 @@ class LesInfractions {
     public function displayInfractionByPermis() {
         $req = $this -> fetchInfractionByPermis();
         foreach($req as $clé) {
-
         };
     }
 }

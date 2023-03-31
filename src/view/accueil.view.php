@@ -22,6 +22,13 @@
                 <th>Conducteur</th>
                 <th>Montant total</th>
             </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
         </table>
 
     </section>

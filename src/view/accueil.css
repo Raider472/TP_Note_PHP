@@ -1,11 +1,32 @@
 body {
     margin: 0;
     text-align: center;
+    font-weight: lighter;
 }
 
 header {
     background-color: #67DA9C;
-    padding: 10px;
+    padding: 15px;
     font-size: 1em;
     font-weight: bold;
+}
+
+h2 {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+}
+
+table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    border: 1px solid #5BD995;
+    border-radius: 5px;
+    width: 50%;
+}
+
+th, td {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
 }
