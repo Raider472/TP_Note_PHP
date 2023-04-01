@@ -40,8 +40,8 @@ class LesInfractions {
     }
 
     public function displayInfractionByPermis() {
-        $req = $this -> fetchInfractionByPermis();
-        foreach($req as $clé) {
+        foreach($this -> fetchInfractionByPermis() as $displayResult) {
+            echo "<table> <tbody> <th> <tr> $displayResult </tr> </th> </tbody> </table>";
         };
     }
 }
