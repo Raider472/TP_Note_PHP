@@ -1,6 +1,5 @@
 <?php
     require ("../controller/Conducteur.php");
-    require("../model/function/FonctionConnexion.php");
     class LesConducteurs {
         private array $conducteursTab;
 
@@ -42,18 +41,32 @@
             }
         }
 
-        function fetchConducteurByNoPermis(string $permis) {
+        function fetchConducteurByNoPermis(string $noPermis) {
             $dbo = choixConnexion();
-            $requete = $dbo->execSQL("SELECT * FROM conducteur WHERE no_permis = \"$permis\"");
-            unset($dbo); 
-            //TODO Le reste à faire
+            $requete = $dbo->execSQL("SELECT * FROM conducteur WHERE no_permis = \"$noPermis\"");
+            unset($dbo);
+            $conducteur = [];
+            foreach($requete as $lesrequeteTab) { //Créer les conducteurs grâce à la classe conducteur et les push dans l'array $conducteur
+                $conducteur[] = new Conducteur(
+                    $lesrequeteTab["no_permis"],
+                    $lesrequeteTab["date_permis"],
+                    $lesrequeteTab["nom"],
+                    $lesrequeteTab["prenom"],
+                    $lesrequeteTab["mdp_encrypter"]
+                );
+            }
+            $this->setArrayTab($conducteur);
         }
 
-        function DisplayAllConducteur() { //Pour display tous les conducteurs avec leur informations 
+        function displayAllConducteur() { //Pour display tous les conducteurs avec leur informations 
             foreach ($this->conducteursTab as $LesConducteurs) {
                 echo "<p>" . $LesConducteurs->getNoPermis() . " | " . $LesConducteurs->getDatePermis() . " | " . $LesConducteurs->getNom() . " | " . $LesConducteurs->getPrenom() . " | " . $LesConducteurs->getMdp() . "</p>";
                 echo "<br>";
             }
+        }
+
+        function displayNomEtPrenomConducteur(): string {
+            return $this->conducteursTab[0]->getNom() . " " . $this->conducteursTab[0]->getPrenom();
         }
     }
 ?>

@@ -10,7 +10,12 @@
             $this->id_inf = $id_inf;
             $this->date_inf = $date_inf;
             $this->no_immat = $no_immat;
-            $this->no_permis = $no_permis;
+            if ($no_permis === null) {
+                $this->no_permis = "";
+            }
+            else {
+                $this->no_permis = $no_permis;
+            }
         }
 
         function setIdInf($id_inf) {

@@ -14,23 +14,9 @@
     <section>
         <h2>Voici la liste des infractions que vous avez commies</h2>
         <br>
-        <table>
-            <tr>
-                <th>Numéro d'infraction</th>
-                <th>Date d'infraction</th>
-                <th>Véhicule</th>
-                <th>Conducteur</th>
-                <th>Montant total</th>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </table>
-
+        <?php 
+            echo $tableau;
+        ?>
     </section>
 </body>
 </html>

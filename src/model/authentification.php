@@ -1,6 +1,7 @@
 <?PHP
     session_start();
     require("../model/function/verificationConnexion.php");
+    require("../model/function/FonctionConnexion.php");
     $identifiants['login'] = (isset($_POST['login'])?$_POST['login']:"");
     $identifiants['password'] = (isset($_POST['password'])?$_POST['password']:"");
     $message = "";

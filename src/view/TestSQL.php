@@ -12,7 +12,7 @@
         require("../model/LesConducteurs.php");
         $jaaj = new LesConducteurs();
         $jaaj->fetchAllConducteur();
-        $jaaj->DisplayAllConducteur();
+        $jaaj->displayAllConducteur();
         $jaaj->fetchConducteurByLoginAndPassword("AZ67", "airpach");
     ?>
 </body>
