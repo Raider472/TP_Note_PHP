@@ -67,7 +67,7 @@ class LesInfractions {
             $tableauString = $tableauString . "<td>" . $lesInfractions->getDateInf() . "</td>";
             $tableauString = $tableauString . "<td>" . $lesInfractions->getNoImmat() . "</td>";
             $tableauString = $tableauString . "<td>" . $lesInfractions->getNoPermis() . "</td>";
-            //rajouterlignes
+            //trouver un moyen d'afficher le prix sans faire du bricolage
             $tableauString = $tableauString . "</tr>";
         }
         $tableauString = $tableauString . "</tbody>";
