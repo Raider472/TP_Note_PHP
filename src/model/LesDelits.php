@@ -35,7 +35,7 @@ class LesDelits {
 
     public function fetchDelitByInfraction(int $id_inf) {
         $dbo = choixConnexion();
-        $req = $dbo -> execSQL("SELECT DISTINCT c.id_inf, i.id_inf, c.id_delit, d.id_delit FROM comprend c, delit d, infraction i WHERE c.id_inf = \"$id_inf\" AND c.id_inf = i.id_inf AND c.id_delit = d.id_delit");
+        $req = $dbo -> execSQL("SELECT DISTINCT i.id_inf, i.date_inf, d.id_delit, d.nature, d.montant FROM comprend c, delit d, infraction i WHERE c.id_inf = \"$id_inf\" AND c.id_inf = i.id_inf AND c.id_delit = d.id_delit");
         unset($dbo);
         $delitsByInfraction = [];
         foreach($req as $delitsTab) {
