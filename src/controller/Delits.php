@@ -5,33 +5,33 @@
         private string $nature;
         private int $montant;
 
-        function __construct($id_delit, $nature, $montant) {
+        public function __construct($id_delit, $nature, $montant) {
             $this->id_delit = $id_delit;
             $this->nature = $nature;
             $this->montant = $montant;
         }
 
-        function setIdDelit($id_delit) {
+        public function setIdDelit($id_delit) {
             $this->id_delit = $id_delit;
         }
 
-        function getIdDelit() {
+        public function getIdDelit() {
             return $this->id_delit;
         }
 
-        function setNature($nature) {
+        public function setNature($nature) {
             $this->nature = $nature;
         }
 
-        function getNature() {
+        public function getNature() {
             return $this->nature;
         }
 
-        function setmontant($montant) {
+        public function setmontant($montant) {
             $this->montant = $montant;
         }
 
-        function getmontant() {
+        public function getmontant() {
             return $this->montant;
         }
     }

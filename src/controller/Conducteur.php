@@ -7,7 +7,7 @@
         private string $prenom;
         private string $mdp;
 
-        function __construct($no_permis, $date_permis, $nom, $prenom, $mdp) {
+        public function __construct($no_permis, $date_permis, $nom, $prenom, $mdp) {
             $this->no_permis = $no_permis;
             $this->date_permis = $date_permis;
             $this->nom = $nom;
@@ -15,43 +15,43 @@
             $this->mdp = $mdp;
         }
 
-        function setNoPermis($no_permis) {
+        public function setNoPermis($no_permis) {
             $this->no_permis = $no_permis;
         }
 
-        function getNoPermis() {
+        public function getNoPermis() {
             return $this->no_permis;
         }
 
-        function setDatePermis($date_permis) {
+        public function setDatePermis($date_permis) {
             $this->date_permis = $date_permis;
         }
 
-        function getDatePermis() {
+        public function getDatePermis() {
             return $this->date_permis;
         }
 
-        function setNom($nom) {
+        public function setNom($nom) {
             $this->nom = $nom;
         }
         
-        function getNom() {
+        public function getNom() {
             return $this->nom;
         }
 
-        function setPrenom($prenom) {
+        public function setPrenom($prenom) {
             $this->prenom = $prenom;
         }
 
-        function getPrenom() {
+        public function getPrenom() {
             return $this->prenom;
         }
 
-        function setMdp($mdp) {
+        public function setMdp($mdp) {
             $this->mdp = $mdp;
         }
 
-        function getMdp() {
+        public function getMdp() {
             return $this->mdp;
         }
     }

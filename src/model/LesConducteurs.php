@@ -3,15 +3,15 @@
     class LesConducteurs {
         private array $conducteursTab;
 
-        function getArrayTab() {
+        public function getArrayTab() {
             return $this->conducteursTab;
         }
 
-        function setArrayTab($arrayTab) {
+        public function setArrayTab($arrayTab) {
             $this->conducteursTab = $arrayTab;
         }
 
-        function fetchAllConducteur() {
+        public function fetchAllConducteur() {
             $dbo = choixConnexion();
             $requete = $dbo->execSQL("SELECT * FROM conducteur"); //Recupère tous les conducteur de la table Conducteur
             unset($dbo);
@@ -29,7 +29,7 @@
             $this->setArrayTab($conducteur);
         }
 
-        function fetchConducteurByLoginAndPassword(string $login, string $password): bool {
+        public function fetchConducteurByLoginAndPassword(string $login, string $password): bool {
             $dbo = choixConnexion();
             $requete = $dbo->execSQL("SELECT * FROM conducteur WHERE no_permis = \"$login\" AND mdp_encrypter = AES_ENCRYPT(\"$password\", \"mysecretkey\")");
             unset($dbo);
@@ -41,7 +41,7 @@
             }
         }
 
-        function fetchConducteurByNoPermis(string $noPermis) {
+        public function fetchConducteurByNoPermis(string $noPermis) {
             $dbo = choixConnexion();
             $requete = $dbo->execSQL("SELECT * FROM conducteur WHERE no_permis = \"$noPermis\"");
             unset($dbo);
@@ -58,14 +58,14 @@
             $this->setArrayTab($conducteur);
         }
 
-        function displayAllConducteur() { //Pour display tous les conducteurs avec leur informations 
+        public function displayAllConducteur() { //Pour display tous les conducteurs avec leur informations 
             foreach ($this->conducteursTab as $LesConducteurs) {
                 echo "<p>" . $LesConducteurs->getNoPermis() . " | " . $LesConducteurs->getDatePermis() . " | " . $LesConducteurs->getNom() . " | " . $LesConducteurs->getPrenom() . " | " . $LesConducteurs->getMdp() . "</p>";
                 echo "<br>";
             }
         }
 
-        function displayNomEtPrenomConducteur(): string {
+        public function displayNomEtPrenomConducteur(): string {
             return $this->conducteursTab[0]->getNom() . " " . $this->conducteursTab[0]->getPrenom();
         }
     }

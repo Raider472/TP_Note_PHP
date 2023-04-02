@@ -6,7 +6,7 @@
         private string $no_immat;
         private string | null $no_permis;
 
-        function __construct($id_inf, $date_inf, $no_immat, $no_permis) {
+        public function __construct($id_inf, $date_inf, $no_immat, $no_permis) {
             $this->id_inf = $id_inf;
             $this->date_inf = $date_inf;
             $this->no_immat = $no_immat;
@@ -18,35 +18,35 @@
             }
         }
 
-        function setIdInf($id_inf) {
+        public function setIdInf($id_inf) {
             $this->id_inf = $id_inf;
         }
 
-        function getIdInf() {
+        public function getIdInf() {
             return $this->id_inf;
         }
 
-        function setDateInf($date_inf) {
+        public function setDateInf($date_inf) {
             $this->date_inf = $date_inf;
         }
 
-        function getDateInf() {
+        public function getDateInf() {
             return  $this->date_inf;
         }
 
-        function setNoImmat($no_immat) {
+        public function setNoImmat($no_immat) {
             $this->no_immat = $no_immat;
         }
 
-        function getNoImmat() {
+        public function getNoImmat() {
             return $this->no_immat;
         }
 
-        function setNoPermis($no_permis) {
+        public function setNoPermis($no_permis) {
             $this->no_permis = $no_permis;
         }
 
-        function getNoPermis() {
+        public function getNoPermis() {
             return $this->no_permis;
         }
     }
