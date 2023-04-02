@@ -30,7 +30,7 @@ class LesInfractions {
 
     public function displayAllInfractions() { // Affiche les toutes les infractions actuellement dans la base de données.
         foreach($this -> infractionsTab as $LesInfractions) {
-            echo "<p>" . $LesInfractions -> getIdInf . $LesInfractions -> getDateInf . $LesInfractions -> getNoImmat . $LesInfractions -> getNoPermis . "</p>";
+            echo "<p>" . $LesInfractions -> getIdInf() . "|" . $LesInfractions -> getDateInf() . "|" . $LesInfractions -> getNoImmat() . "|" . $LesInfractions -> getNoPermis() . "</p>";
         }
     }
 
@@ -39,7 +39,7 @@ class LesInfractions {
         $requete = $dbo -> execSQL("SELECT DISTINCT id_inf, date_inf, i.no_immat, i.no_permis FROM infraction i, vehicule v WHERE (i.no_permis = \"$noPermis\") OR (v.no_permis = \"$noPermis\" AND i.no_immat = v.no_immat AND i.no_permis = '')");
         unset($dbo);
         $infractions = [];
-        foreach($requete as $lesrequeteTab) { //Créer les conducteurs grâce à la classe conducteur et les push dans l'array $conducteur
+        foreach($requete as $lesrequeteTab) { //Créer les infractions grâce à la classe infraction et les push dans l'array $infractions
             $infractions[] = new Infraction(
                 $lesrequeteTab["id_inf"],
                 $lesrequeteTab["date_inf"],

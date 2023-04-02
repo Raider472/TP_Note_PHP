@@ -27,11 +27,11 @@
             return $this->nature;
         }
 
-        public function setmontant($montant) {
+        public function setMontant($montant) {
             $this->montant = $montant;
         }
 
-        public function getmontant() {
+        public function getMontant() {
             return $this->montant;
         }
     }
