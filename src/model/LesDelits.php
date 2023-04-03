@@ -18,7 +18,7 @@ class LesDelits {
         unset($dbo);
         $delits = [];
         foreach($req as $lesDelits) {
-            $delits = new Delits (
+            $delits[] = new Delits (
             $lesDelits["id_delit"],
             $lesDelits["nature"],
             $lesDelits["montant"]
@@ -35,17 +35,25 @@ class LesDelits {
 
     public function fetchDelitByInfraction(int $id_inf) {
         $dbo = choixConnexion();
-        $req = $dbo -> execSQL("SELECT DISTINCT d.id_delit, d.nature, d.montant FROM comprend c, delit d, infraction i WHERE c.id_inf = \"$id_inf\" AND c.id_delit = d.id_delit");
+        $req = $dbo -> execSQL("SELECT DISTINCT d.id_delit, d.nature, d.montant FROM comprend c, delit d, infraction i WHERE c.id_inf = $id_inf AND c.id_delit = d.id_delit");
         unset($dbo);
         $delitsByInfraction = [];
         foreach($req as $delitsTab) {
-            $delitsByInfraction = new Delits(
+            $delitsByInfraction[] = new Delits(
                 $delitsTab["id_delit"],
                 $delitsTab["nature"],
                 $delitsTab["montant"]
             ); 
         };
         $this -> setDelitsTab($delitsByInfraction);
+    }
+
+    public function displayMontantTotalByLesDelits(): int {
+        $mémoireMontant = 0;
+        foreach($this -> delitsTab as $récupMontant) {
+            $mémoireMontant += $récupMontant -> getMontant();
+        };
+        return $mémoireMontant;
     }
 }
 
