@@ -10,10 +10,17 @@
     <h1>Test BDD</h1>
     <?php
         require("../model/LesConducteurs.php");
+        require("../model/function/FonctionConnexion.php");
+        require("../model/LesDelits.php");
         $jaaj = new LesConducteurs();
+        $jaaaj = new LesDelits();
         $jaaj->fetchAllConducteur();
         $jaaj->displayAllConducteur();
         $jaaj->fetchConducteurByLoginAndPassword("AZ67", "airpach");
+        $jaaaj -> fetchAllDelits();
+        $jaaaj -> fetchDelitByInfraction(1);
+        $jaaaj -> displayAllDelits();
+        $jaaaj -> displayMontantTotalByLesDelits();
     ?>
 </body>
 </html>

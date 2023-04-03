@@ -61,12 +61,16 @@ class LesInfractions {
         $tableauString = $tableauString . "<th>Montant total</th>";
         $tableauString = $tableauString . "</thead>";
         $tableauString = $tableauString . "<tbody>";
+        require_once("../model/LesDelits.php");
+        $lesDelits = new LesDelits();
         foreach ($this->infractionsTab as $lesInfractions) {
+            $lesDelits -> fetchDelitByInfraction($lesInfractions -> getIdInf());
             $tableauString = $tableauString . "<tr>";
             $tableauString = $tableauString . "<td>" . $lesInfractions->getIdInf() . "</td>";
             $tableauString = $tableauString . "<td>" . $lesInfractions->getDateInf() . "</td>";
             $tableauString = $tableauString . "<td>" . $lesInfractions->getNoImmat() . "</td>";
             $tableauString = $tableauString . "<td>" . $lesInfractions->getNoPermis() . "</td>";
+            $tableauString = $tableauString . "<td>" . $lesDelits->displayMontantTotalByLesDelits() . "</td>";
             //trouver un moyen d'afficher le prix sans faire du bricolage
             $tableauString = $tableauString . "</tr>";
         }
