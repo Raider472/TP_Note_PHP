@@ -78,6 +78,17 @@ class LesInfractions {
         $tableauString = $tableauString . "</table>";
         return $tableauString;
     }
+
+    public function getIncrementatiobIdInf(): int { //todo plus tard optimisaton
+        $dbo = choixConnexion();
+        $req = $dbo -> execSQL("SELECT MAX(id_inf) FROM infraction");
+        unset($dbo);
+        $incrementation = 0;
+        foreach($req as $increment) {
+            $incrementation += $increment["MAX(id_inf)"];
+        }
+        return $incrementation + 1;
+    }
 }
 
 ?>
