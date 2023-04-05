@@ -28,12 +28,15 @@ input#submit {
     padding: 5em 2em 0 2em;
 }
 
-fieldset {
-    border: 3px ridge #5BD995;
+form {
     text-align: center;
     font-weight: bolder;
     font-size: 30px;
     width: 30%;
+}
+
+fieldset {
+    border: 3px ridge #5BD995;
 }
 
 input#submit {
@@ -41,4 +44,8 @@ input#submit {
     background-color: #67DA9C;
     text-align: center;
     color: white;
+}
+
+.erreurMsg {
+    color: red;
 }

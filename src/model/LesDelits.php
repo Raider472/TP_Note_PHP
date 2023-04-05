@@ -55,6 +55,28 @@ class LesDelits {
         };
         return $mémoireMontant;
     }
+
+    public function returnArrayDelitsNom(): array {
+        $arrayDelit = [];
+        foreach($this->delitsTab as $unDelit) {
+            $arrayDelit[] = $unDelit->getNature();
+        }
+        return $arrayDelit;
+    }
+
+    public function addLiaisonInfraDelit(array $checkDelit, string $idInfra) {
+        $dbo = choixConnexion();
+        foreach($checkDelit as $unDelit) {
+            $dbo->execSQL("INSERT INTO comprend(id_inf, id_delit) VALUES (\"$idInfra\", $unDelit)");  
+        }
+        unset($dbo);
+    }
+
+    public function deleteLiaisonInfraDelit(string $id) {
+        $dbo = choixConnexion();
+        $dbo->execSQL("DELETE FROM comprend WHERE id_inf = \"$id\"");
+        unset($dbo);
+    }
 }
 
 ?>

@@ -68,5 +68,26 @@
         public function displayNomEtPrenomConducteur(): string {
             return $this->conducteursTab[0]->getNom() . " " . $this->conducteursTab[0]->getPrenom();
         }
+
+        public function displayAllConducteurSelect(): string {
+            $selectString = "<option value=\"\">Aucun</option>";
+
+            foreach($this->conducteursTab as $unConducteur) {
+                $selectString = $selectString . "<option value =\"";
+                $selectString = $selectString . "select_permis[" . $unConducteur->getNoPermis() . "]";
+                $selectString = $selectString . "\">";
+                $selectString = $selectString . $unConducteur->getNoPermis();
+                $selectString = $selectString . "</option>";
+            }
+            return $selectString;
+        }
+
+        public function returnArrayPermis(): array {
+            $arrayPermis = [];
+            foreach($this->conducteursTab as $unConducteur) {
+                $arrayPermis[] = $unConducteur->getNoPermis();
+            }
+            return $arrayPermis;
+        }
     }
 ?>

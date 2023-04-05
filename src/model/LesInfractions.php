@@ -13,20 +13,20 @@ class LesInfractions {
     }
 
     public function fetchAllInfraction() { // Récupère toutes les infractions actuellement dans la base de données.
-            $dbo = choixConnexion();
-            $req = $dbo -> execSQL("SELECT * FROM infraction");
-            unset($dbo);
-            $infractions = [];
-            foreach($req as $lesReqs) {
-                $infractions[] = new Infraction(
-                    $lesReqs["id_inf"],
-                    $lesReqs["date_inf"],
-                    $lesReqs["no_immat"],
-                    $lesReqs["no_permis"]
-                );
-            }
-            $this -> setInfractionsTab($infractions);
+        $dbo = choixConnexion();
+        $req = $dbo -> execSQL("SELECT * FROM infraction");
+        unset($dbo);
+        $infractions = [];
+        foreach($req as $lesReqs) {
+            $infractions[] = new Infraction(
+                $lesReqs["id_inf"],
+                $lesReqs["date_inf"],
+                $lesReqs["no_immat"],
+                $lesReqs["no_permis"]
+            );
         }
+        $this -> setInfractionsTab($infractions);
+    }
 
     public function displayAllInfractions() { // Affiche les toutes les infractions actuellement dans la base de données.
         foreach($this -> infractionsTab as $LesInfractions) {
@@ -50,7 +50,7 @@ class LesInfractions {
         $this->setInfractionsTab($infractions);
     }
 
-    public function displayLesInfractionStockéesTableau() {
+    public function displayLesInfractionStockéesTableau(): string {
         $tableauString = "";
         $tableauString = $tableauString . "<table>";
         $tableauString = $tableauString . "<thead>";
@@ -88,6 +88,35 @@ class LesInfractions {
             $incrementation += $increment["MAX(id_inf)"];
         }
         return $incrementation + 1;
+    }
+
+    public function boolIdInfExiste(int $id): bool {
+        $dbo = choixConnexion();
+        $requete = $dbo->execSQL("SELECT * FROM infraction WHERE id_inf = $id");
+        unset($dbo);
+        if (count($requete) != 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public function addNewInfraction(int $id, $date, string $NoPermis, string $NoImmat) {
+        $dbo = choixConnexion();
+        if ($NoPermis === "") {
+            $dbo->execSQL("INSERT INTO infraction(id_inf, date_inf, no_immat) VALUES ($id, \"$date\", \"$NoImmat\")");
+        }
+        else {
+            $dbo->execSQL("INSERT INTO infraction(id_inf, date_inf, no_immat, no_permis) VALUES ($id, \"$date\", \"$NoImmat\", \"$NoPermis\")");
+        }
+        unset($dbo);
+    }
+
+    public function deleteInfraction(int $id) {
+        $dbo = choixConnexion();
+        $dbo->execSQL("DELETE FROM infraction WHERE id_inf = $id");
+        unset($dbo);
     }
 }
 
