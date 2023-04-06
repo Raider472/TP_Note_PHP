@@ -70,13 +70,19 @@
             $messageErreur .= "Veulliez selectionner une voiture <br>";
             $verification = false;
         }
-        if ($checkDelit === null) {
+        if ($checkDelit === null || !isset($_POST["check_delit"])) {
             $messageErreur .= "Veulliez selectionner au moins délit <br>";
             $verification = false;
         }
         if ($verification === true) {
             if (isset($_GET["op"]) && $_GET["op"] === "ajout") {
                 $lesInfractions->addNewInfraction($inputId, $dateInput, $selectPermis, $selectVoiture);
+                $lesDelits->addLiaisonInfraDelit($checkDelit, $inputId);
+                header("Location: ./accueil.php");
+            }
+            else if (isset($_GET["op"]) && $_GET["op"] === "modif") {
+                $lesInfractions->updateInfraction($inputId, $dateInput, $selectPermis, $selectVoiture);
+                $lesDelits->deleteLiaisonInfraDelit($inputId);
                 $lesDelits->addLiaisonInfraDelit($checkDelit, $inputId);
                 header("Location: ./accueil.php");
             }

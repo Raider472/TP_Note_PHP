@@ -134,6 +134,12 @@ class LesInfractions {
         $dbo->execSQL("DELETE FROM infraction WHERE id_inf = $id");
         unset($dbo);
     }
+
+    public function updateInfraction(int $id, $date, string $noPermis, string $NoImmat) {
+        $dbo = choixConnexion();
+        $dbo->execSQL("UPDATE infraction SET date_inf = \"$date\", no_immat = \"$NoImmat\", no_permis = \"$noPermis\" WHERE id_inf = $id");
+        unset($dbo);
+    }
 }
 
 ?>
