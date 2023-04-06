@@ -70,5 +70,11 @@
                 <p class="erreurMsg"><?= $messageErreur ?></p>
             </form>
         </div>
+        <br>
+        <div class="divAnnuler">
+            <div>
+                <a href="../model/accueil.php"><input id="submit" type="submit" value="Annuler"></a>
+            </div>
+        </div>
     </body>
 </html>

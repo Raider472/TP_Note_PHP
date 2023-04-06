@@ -22,11 +22,29 @@ table {
     border-collapse: collapse;
     border: 1px solid #5BD995;
     border-radius: 5px;
-    width: 50%;
+    width: 55%;
+    font-size: 20px;
 }
 
 th, td {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
+    
+}
+
+tr {
+    border-top: 1px solid #5BD995;
+    border-bottom: 1px solid #5BD995;
+}
+
+thead tr {
+    background-color: #67DA9C;
+    color: white;
+}
+
+input#SubmitAjout {
+    font-size: 20px;
+    background-color: #67DA9C;
+    color: white;
 }

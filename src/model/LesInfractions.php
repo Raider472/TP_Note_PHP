@@ -70,11 +70,14 @@ class LesInfractions {
         $tableauString = "";
         $tableauString = $tableauString . "<table>";
         $tableauString = $tableauString . "<thead>";
+        $tableauString = $tableauString . "<th></th>";
         $tableauString = $tableauString . "<th>Numéro d'infraction</th>";
         $tableauString = $tableauString . "<th>Date d'infraction</th>";
         $tableauString = $tableauString . "<th>Véhicule</th>";
         $tableauString = $tableauString . "<th>Conducteur</th>";
         $tableauString = $tableauString . "<th>Montant total</th>";
+        $tableauString = $tableauString . "<th></th>";
+        $tableauString = $tableauString . "<th></th>";
         $tableauString = $tableauString . "</thead>";
         $tableauString = $tableauString . "<tbody>";
         require_once("../model/LesDelits.php");
@@ -82,12 +85,14 @@ class LesInfractions {
         foreach ($this->infractionsTab as $lesInfractions) {
             $lesDelits -> fetchDelitByInfraction($lesInfractions -> getIdInf());
             $tableauString = $tableauString . "<tr>";
+            $tableauString = $tableauString . "<td>" . "<a href=\"../model/rien.php?op=ajout&num=" . urlencode($lesInfractions->getIdInf()) . "\"><img src=\"../view/assets/visu.png\"></a>" . "</td>"; //TODO changer le lien en attendant DJeanGab
             $tableauString = $tableauString . "<td>" . $lesInfractions->getIdInf() . "</td>";
             $tableauString = $tableauString . "<td>" . $lesInfractions->getDateInf() . "</td>";
             $tableauString = $tableauString . "<td>" . $lesInfractions->getNoImmat() . "</td>";
             $tableauString = $tableauString . "<td>" . $lesInfractions->getNoPermis() . "</td>";
             $tableauString = $tableauString . "<td>" . $lesDelits->displayMontantTotalByLesDelits() . "</td>";
-            //trouver un moyen d'afficher le prix sans faire du bricolage
+            $tableauString = $tableauString . "<td>" . "<a href=\"../model/accueil.php?op=suppr&num=" . urlencode($lesInfractions->getIdInf()) . "\"><img src=\"../view/assets/corbeille.png\"></a>" . "</td>";
+            $tableauString = $tableauString . "<td>" . "<a href=\"../model/ajout.php?op=modif&num=" . urlencode($lesInfractions->getIdInf()) . "\"><img src=\"../view/assets/modification.png\"></a>" . "</td>";
             $tableauString = $tableauString . "</tr>";
         }
         $tableauString = $tableauString . "</tbody>";

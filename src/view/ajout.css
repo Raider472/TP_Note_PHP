@@ -14,7 +14,6 @@ div {
 input#submit {
     font-size: 20px;
     background-color: #67DA9C;
-    text-align: center;
     color: white;
 }
 
@@ -39,13 +38,11 @@ fieldset {
     border: 3px ridge #5BD995;
 }
 
-input#submit {
-    font-size: 20px;
-    background-color: #67DA9C;
-    text-align: center;
-    color: white;
-}
-
 .erreurMsg {
     color: red;
+}
+
+.divAnnuler {
+    display: flex;
+    align-items: center;
 }

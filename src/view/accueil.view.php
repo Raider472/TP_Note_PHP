@@ -18,9 +18,8 @@
             echo $tableau;
         ?>
     </section>
-    <a href="../model/ajout.php?op=ajout">test ajout</a>
-    <a href="../model/accueil.php?op=suppr&num=86">test suppression</a>
-    <a href="../model/ajout.php?op=modif&num=1">test modification</a>
+    <br>
+    <a href="../model/ajout.php?op=ajout"><input type="submit" id="SubmitAjout" value="ajout"></a>
 </body>
 </html>
 
