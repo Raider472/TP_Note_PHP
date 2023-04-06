@@ -11,9 +11,9 @@
         <div id="main-frame">
             <form method="post">
                 <fieldset>
-                <h1>Ajout d'une infraction</h1>
+                <h1><?= $nomPage ?> d'une infraction</h1>
                     <label for="input_idInf">Id Infraction</label>
-                    <input type="text" name="input_idInf" value="<?= $inputId ?>">
+                    <input type="text" name="input_idInf" value="<?= $inputId ?>" <?= $attributInput ?>>
                     <br>
                     <label for="input_dateInf">Date</label>
                     <input type="date" name="input_dateInf" value="<?= $dateInput ?>">

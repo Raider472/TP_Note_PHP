@@ -64,6 +64,14 @@ class LesDelits {
         return $arrayDelit;
     }
 
+    public function returnArrayDelitsId(): array {
+        $arrayDelit = [];
+        foreach($this->delitsTab as $unDelit) {
+            $arrayDelit[] = $unDelit->getIdDelit();
+        }
+        return $arrayDelit;
+    }
+
     public function addLiaisonInfraDelit(array $checkDelit, string $idInfra) {
         $dbo = choixConnexion();
         foreach($checkDelit as $unDelit) {

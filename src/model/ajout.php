@@ -21,8 +21,10 @@
     $lesPermis = $lesConducteurs->returnArrayPermis();
     $lesImmats = $lesVehicules->returnArrayImmats();
     $messageErreur = "";
+    $attributInput = "";
 
     if (isset($_GET["op"]) && $_GET["op"] === "ajout") {
+        $nomPage = "Ajout";
         $inputId = (isset($_POST["input_idInf"])?$_POST["input_idInf"]: null);
         $dateInput = (isset($_POST["input_dateInf"])?$_POST["input_dateInf"]: date("Y-m-d"));
         $selectPermis = (isset($_POST["select_permis"])?$_POST["select_permis"]: null);
@@ -33,11 +35,22 @@
         }
     }
     else if(isset($_GET["op"]) && $_GET["op"] === "modif") {
+        $nomPage = "Modification";
+        $attributInput= "readonly";
         $inputId = $_GET["num"];
+        $uneInfraction = new LesInfractions();
+        $uneInfraction->fetchInfractionById($_GET["num"]);
+        $unDelit = new LesDelits();
+        $unDelit->fetchDelitByInfraction($_GET["num"]);
+        $dateInput = (isset($_POST["input_dateInf"])?$_POST["input_dateInf"]: date($uneInfraction->getInfractionsTab()[0]->getDateInf()));
+        $selectPermis = ((isset($_POST["select_permis"])?$_POST["select_permis"]: $uneInfraction->getInfractionsTab()[0]->getNoPermis()));
+        $selectVoiture = (isset($_POST["select_voiture"])?$_POST["select_voiture"]: $uneInfraction->getInfractionsTab()[0]->getNoImmat());
+        $checkDelit = (isset($_POST["check_delit"])?$_POST["check_delit"]: $unDelit->returnArrayDelitsId());
     }
+
     if (isset($_POST["input_idInf"]) && isset($_POST["input_dateInf"]) && isset($_POST["select_voiture"])) {
         $verification = true;
-        if($lesInfractions->boolIdInfExiste((int)$inputId) === true) {
+        if($lesInfractions->boolIdInfExiste((int)$inputId) === true && $_GET["op"] != "modif") {
             $messageErreur .= "L'id d'infraction existe deja <br>";
             $verification = false;
         }

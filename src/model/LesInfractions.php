@@ -50,6 +50,22 @@ class LesInfractions {
         $this->setInfractionsTab($infractions);
     }
 
+    public function fetchInfractionById(int $id) { // Récupère les infractions avec comme clé le numéro de permis.
+        $dbo = choixConnexion();
+        $requete = $dbo -> execSQL("SELECT * FROM infraction WHERE id_inf = $id");
+        unset($dbo);
+        $infractions = [];
+        foreach($requete as $lesrequeteTab) { //Créer les infractions grâce à la classe infraction et les push dans l'array $infractions
+            $infractions[] = new Infraction(
+                $lesrequeteTab["id_inf"],
+                $lesrequeteTab["date_inf"],
+                $lesrequeteTab["no_immat"],
+                $lesrequeteTab["no_permis"]
+            );
+        }
+        $this->setInfractionsTab($infractions);
+    }
+
     public function displayLesInfractionStockéesTableau(): string {
         $tableauString = "";
         $tableauString = $tableauString . "<table>";
