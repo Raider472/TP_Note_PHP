@@ -48,3 +48,8 @@ input#SubmitAjout {
     background-color: #67DA9C;
     color: white;
 }
+
+input#SubmitDeconexion {
+    font-size: 20px;
+    background-color: #ff6666;
+}
