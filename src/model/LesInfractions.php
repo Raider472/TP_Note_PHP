@@ -87,7 +87,7 @@ class LesInfractions {
         foreach ($this->infractionsTab as $lesInfractions) {
             $lesDelits -> fetchDelitByInfraction($lesInfractions -> getIdInf());
             $tableauString = $tableauString . "<tr>";
-            $tableauString = $tableauString . "<td>" . "<a href=\"../model/detail.php?op=ajout&num=" . urlencode($lesInfractions->getIdInf()) . "\"><img src=\"../view/assets/visu.png\"></a>" . "</td>"; //TODO changer le lien en attendant DJeanGab
+            $tableauString = $tableauString . "<td>" . "<a href=\"../model/detail.php?num=" . urlencode($lesInfractions->getIdInf()) . "\"><img src=\"../view/assets/visu.png\"></a>" . "</td>"; //TODO changer le lien en attendant DJeanGab
             $tableauString = $tableauString . "<td>" . $lesInfractions->getIdInf() . "</td>";
             $tableauString = $tableauString . "<td>" . $lesInfractions->getDateInf() . "</td>";
             $tableauString = $tableauString . "<td>" . $lesInfractions->getNoImmat() . "</td>";
