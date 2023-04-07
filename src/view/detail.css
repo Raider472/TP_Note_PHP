@@ -44,7 +44,7 @@ ul {
 
 input#Retour{
     position: relative;
-    left: 230px;
+    left: 350px;
     bottom: 40px;
     background-image: url(assets/retour.png);
     background-repeat: no-repeat;
@@ -55,3 +55,15 @@ input#Retour{
     border-radius: 60px / 40px;
 
 }
+
+@media screen and (max-width: 1500px) {
+    input#Retour {
+        position: relative;
+        left: 0px;
+        bottom: 0px;
+    }
+}
+
+
+
+
