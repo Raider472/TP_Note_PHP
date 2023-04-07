@@ -1,7 +1,7 @@
 <?php
     session_start();
-    require("../model/function/FonctionConnexion.php");
-    
+    require_once("../model/function/FonctionConnexion.php");
 
+    include("../view/detail.view.php");
 ?>
 

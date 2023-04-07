@@ -17,12 +17,12 @@
             <span>1</span>
             <p>Date d'infraction :</p>
             <span>15 Mai 2023</span>
-            <p>Véhicule :</p>
-            <span>Connard</span>
-            <p>Modèle :</p>
-            <span>Sport</span>
+            <p>Immatriculation :</p>
+            <span>5432YZ88</span>
             <p>Marque :</p>
-            <span>Audi</span>
+            <span>Citroën</span>
+            <p>Modèle :</p>
+            <span>C3</span>
             <p id="detail">Details :</p>
             <ul>
                 <li>Excès de vitesse</li>
