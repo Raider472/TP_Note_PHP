@@ -1,0 +1,21 @@
+Gabriel NAE
+Jean-Gabriel LEMAIRE
+Nicolas MARSZALEK
+----------------------------------------------------------------
+
+administrateur :
+login : sudo
+mot de passe : sudoAdmin
+
+utilisateurs :
+1er
+login : AZ67 (ou az67)
+mot de passe : airpach
+
+2eme
+login : AZ99 (ou az99)
+mot de passe : camara
+
+lien DevWeb :
+https://devweb.iutmetz.univ-lorraine.fr/~nae1u/TP_NOTE_PHP
+
