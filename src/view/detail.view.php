@@ -25,11 +25,13 @@
             <p>Modèle :</p>
             <span><?= $modeleVehicule ?></span>
             <p id="detail">Details :</p>
-            <span><?= $detailsDelits ?></span>
+            <ul>
+                <?= $detailsDelits ?>
+            </ul>
             <p>Montant total :</p>
             <span><?= $montantTotal ?></span>
         </div>
-        <a href="../model/accueil.php?op=retour"><input type="button" id="Retour"></a> 
+        <a href="../model/accueil.php"><input type="button" id="Retour"></a> 
     </section>
 </body>
 </html>

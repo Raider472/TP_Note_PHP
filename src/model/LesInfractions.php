@@ -36,7 +36,7 @@ class LesInfractions {
 
     public function fetchInfractionByPermis(string $noPermis) { // Récupère les infractions avec comme clé le numéro de permis.
         $dbo = choixConnexion();
-        $requete = $dbo -> execSQL("SELECT DISTINCT id_inf, date_inf, i.no_immat, i.no_permis FROM infraction i, vehicule v WHERE (i.no_permis = \"$noPermis\") OR (v.no_permis = \"$noPermis\" AND i.no_immat = v.no_immat AND i.no_permis = '')");
+        $requete = $dbo -> execSQL("SELECT DISTINCT id_inf, date_inf, i.no_immat, i.no_permis FROM infraction i, vehicule v WHERE (i.no_permis = \"$noPermis\") OR (v.no_permis = \"$noPermis\" AND i.no_immat = v.no_immat AND i.no_permis = '') ORDER BY id_inf ASC");
         unset($dbo);
         $infractions = [];
         foreach($requete as $lesrequeteTab) { //Créer les infractions grâce à la classe infraction et les push dans l'array $infractions
@@ -50,7 +50,7 @@ class LesInfractions {
         $this->setInfractionsTab($infractions);
     }
 
-    public function fetchInfractionById(int $id) { // Récupère les infractions avec comme clé le numéro de permis.
+    public function fetchInfractionById(int $id) {
         $dbo = choixConnexion();
         $requete = $dbo -> execSQL("SELECT * FROM infraction WHERE id_inf = $id");
         unset($dbo);
@@ -148,32 +148,6 @@ class LesInfractions {
         $dbo = choixConnexion();
         $dbo->execSQL("UPDATE infraction SET date_inf = \"$date\", no_immat = \"$NoImmat\", no_permis = \"$noPermis\" WHERE id_inf = $id");
         unset($dbo);
-    }
-
-    public function displayDateByNoPermis(string $NoPermis): string {
-        $dbo = choixConnexion();
-        $req = $dbo -> execSQL("SELECT date_inf FROM infraction WHERE no_permis = \"$NoPermis\"");
-        unset($dbo);
-        $arrayDate = [];
-        foreach($req as $uneDate) {
-            $arrayDate[] = $uneDate['date_inf']; 
-            $arrayDate[] = "<br>";
-        }
-        return implode($arrayDate);
-    }
-    public function displayIdInfractionByNoPermis(string $NoPermis, int $getNum): string {
-        $dbo = choixConnexion();
-        $req = $dbo -> execSQL("SELECT id_inf FROM infraction WHERE no_permis = \"$NoPermis\"");
-        unset($dbo);
-        $arrayInf = [];
-        foreach($req as $idInf) {
-            $arrayInf[] = $idInf['id_inf'];
-            $arrayInf[] = "<br>"; 
-        }
-        if ($getNum == $idInf['id_inf']) {
-        return implode($arrayInf);
-        } else 
-        return "Aucune infraction trouvée dans la base de données !";
     }
 }
 ?>
