@@ -41,6 +41,39 @@
             return $selectString;
         }
 
+        public function displayMarqueByNoPermis(string $NoPermis): string {
+            $dbo = choixConnexion();
+            $req = $dbo -> execSQL("SELECT marque FROM vehicule WHERE no_permis = \"$NoPermis\"");
+            unset($dbo);
+            $arrayMarque = [];
+            foreach($req as $uneMarque) {
+                $arrayMarque[] = $uneMarque['marque']; 
+            }
+            return implode($arrayMarque);
+        }
+
+        public function displayModeleByNoPermis(string $NoPermis): string {
+            $dbo = choixConnexion();
+            $req = $dbo -> execSQL("SELECT modele FROM vehicule WHERE no_permis = \"$NoPermis\"");
+            unset($dbo);
+            $arrayModele = [];
+            foreach($req as $unModele) {
+                $arrayModele[] = $unModele['modele']; 
+            }
+            return implode($arrayModele);
+        }
+
+        public function displayImmatByNoPermis(string $NoPermis): string {
+            $dbo = choixConnexion();
+            $req = $dbo -> execSQL("SELECT no_immat FROM vehicule WHERE no_permis = \"$NoPermis\"");
+            unset($dbo);
+            $arrayImmat = [];
+            foreach($req as $uneImmat) {
+                $arrayImmat[] = $uneImmat['no_immat']; 
+            }
+            return implode($arrayImmat);
+        }
+
         public function returnArrayImmats(): array {
             $arrayImmat = [];
             foreach($this->vehiculeTab as $unVéhicule) {

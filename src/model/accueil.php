@@ -20,7 +20,7 @@
     }
     else {
         $boutton = "";
-        $messageInfraction = "<h2>Voici la liste des infractions que vous avez commies</h2>";
+        $messageInfraction = "<h2>Voici la liste des infractions que vous avez commises</h2>";
         $infraction->fetchInfractionByPermis($_SESSION['login']);
     }
     $tableau = $infraction->displayLesInfractionStockéesTableau(strtolower($_SESSION['login']));

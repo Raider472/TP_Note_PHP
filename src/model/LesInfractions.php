@@ -149,6 +149,31 @@ class LesInfractions {
         $dbo->execSQL("UPDATE infraction SET date_inf = \"$date\", no_immat = \"$NoImmat\", no_permis = \"$noPermis\" WHERE id_inf = $id");
         unset($dbo);
     }
-}
 
+    public function displayDateByNoPermis(string $NoPermis): string {
+        $dbo = choixConnexion();
+        $req = $dbo -> execSQL("SELECT date_inf FROM infraction WHERE no_permis = \"$NoPermis\"");
+        unset($dbo);
+        $arrayDate = [];
+        foreach($req as $uneDate) {
+            $arrayDate[] = $uneDate['date_inf']; 
+            $arrayDate[] = "<br>";
+        }
+        return implode($arrayDate);
+    }
+    public function displayIdInfractionByNoPermis(string $NoPermis, int $getNum): string {
+        $dbo = choixConnexion();
+        $req = $dbo -> execSQL("SELECT id_inf FROM infraction WHERE no_permis = \"$NoPermis\"");
+        unset($dbo);
+        $arrayInf = [];
+        foreach($req as $idInf) {
+            $arrayInf[] = $idInf['id_inf'];
+            $arrayInf[] = "<br>"; 
+        }
+        if ($getNum == $idInf['id_inf']) {
+        return implode($arrayInf);
+        } else 
+        return "Aucune infraction trouvée dans la base de données !";
+    }
+}
 ?>

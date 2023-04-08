@@ -9,30 +9,27 @@
 </head>
 <body>
     <header>
-        <h1>Détail de l'infraction n°<?= $message ?></h1>
+        <h1>Détail de l'infraction n°<?= $numInfraction ?></h1>
     </header>
     <section>
-        <div>
+        <div id="content">
+            <h2><?= $utilisateurNom ?>, voici le détail de l'infraction que vous avez commise :</h2>
             <p>Numéro d'infraction :</p>
-            <span>1</span>
+            <span><?= $numInfraction ?></span>
             <p>Date d'infraction :</p>
-            <span>15 Mai 2023</span>
+            <span><?= $dateInfraction ?></span>
             <p>Immatriculation :</p>
-            <span>5432YZ88</span>
+            <span><?= $userImmat ?></span>
             <p>Marque :</p>
-            <span>Citroën</span>
+            <span><?= $marqueVehicule ?></span>
             <p>Modèle :</p>
-            <span>C3</span>
+            <span><?= $modeleVehicule ?></span>
             <p id="detail">Details :</p>
-            <ul>
-                <li>Excès de vitesse</li>
-                <li>Outrage à agent</li>
-                <li>Refus de priorité</li>
-            </ul>
+            <span><?= $detailsDelits ?></span>
             <p>Montant total :</p>
-            <span>500 €</span>
+            <span><?= $montantTotal ?></span>
         </div>
-        <input type="button" id="Retour">
+        <a href="../model/accueil.php?op=retour"><input type="button" id="Retour"></a> 
     </section>
 </body>
 </html>

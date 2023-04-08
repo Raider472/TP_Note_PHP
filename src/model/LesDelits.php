@@ -48,6 +48,19 @@ class LesDelits {
         $this -> setDelitsTab($delitsByInfraction);
     }
 
+    public function displayDelitsByInfraction(int $id_inf) {
+        $tableauString = "";
+        $tableauString = $tableauString . "<table>";
+        $tableauString = $tableauString . "<thead>";
+        $tableauString = $tableauString . "<th>Numéro du délit</th>";
+        $tableauString = $tableauString . "<th>Nature du délit</th>";
+        $tableauString = $tableauString . "<th>Montant du délit</th>";
+        $tableauString = $tableauString . "</thead>";
+        $tableauString = $tableauString . "</thead>";
+        $tableauString = $tableauString . "</thead>";
+        $tableauString = $tableauString . "</thead>";
+    }
+
     public function displayMontantTotalByLesDelits(): int {
         $mémoireMontant = 0;
         foreach($this -> delitsTab as $récupMontant) {
@@ -84,6 +97,27 @@ class LesDelits {
         $dbo = choixConnexion();
         $dbo->execSQL("DELETE FROM comprend WHERE id_inf = \"$id\"");
         unset($dbo);
+    }
+
+    public function displayDelitsByNoPermis(string $NoPermis): string {
+        $dbo = choixConnexion();
+        $req = $dbo -> execSQL("SELECT DISTINCT d.nature FROM delit d, infraction i, comprend c WHERE i.no_permis = \"$NoPermis\" AND d.id_delit = c.id_delit AND i.id_inf = c.id_inf");
+        $arrayNatureDelit = [];
+        foreach($req as $delits) {
+            $arrayNatureDelit[] = "<br>";
+            $arrayNatureDelit[] = "<li>".$delits['nature']."</li>";
+        }
+        return implode($arrayNatureDelit);
+    }
+
+    public function calculateurMontantTotal(int $getNum): int {
+        $dbo = choixConnexion();
+        $req = $dbo -> execSQL("SELECT DISTINCT d.montant FROM delit d, infraction i, comprend c WHERE i.id_inf = \"$getNum\" AND d.id_delit = c.id_delit AND i.id_inf = c.id_inf");
+        $calculateur = 0;
+        foreach($req as $unCalcul) {
+            $calculateur += $unCalcul['montant'];
+        }
+        return $calculateur;
     }
 }
 
