@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,14 +12,17 @@
         <h1>Bonjour <?= $message ?></h1>
     </header>
     <section>
-        <h2>Voici la liste des infractions que vous avez commies</h2>
+        <?= $messageInfraction ?>
         <br>
         <?php 
             echo $tableau;
         ?>
     </section>
     <br>
-    <a href="../model/ajout.php?op=ajout"><input type="submit" id="SubmitAjout" value="ajout"></a>
+    <?= $boutton ?>
+    <br>
+    <br>
+    <a href="../model/accueil.php?op=deconnexion"><input type="submit" id="SubmitDeconexion" value="Déconnexion"></a>
 </body>
 </html>
 

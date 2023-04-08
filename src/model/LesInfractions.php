@@ -14,7 +14,7 @@ class LesInfractions {
 
     public function fetchAllInfraction() { // Récupère toutes les infractions actuellement dans la base de données.
         $dbo = choixConnexion();
-        $req = $dbo -> execSQL("SELECT * FROM infraction");
+        $req = $dbo -> execSQL("SELECT * FROM infraction ORDER BY id_inf ASC");
         unset($dbo);
         $infractions = [];
         foreach($req as $lesReqs) {
@@ -66,7 +66,7 @@ class LesInfractions {
         $this->setInfractionsTab($infractions);
     }
 
-    public function displayLesInfractionStockéesTableau(): string {
+    public function displayLesInfractionStockéesTableau($identifiants): string {
         $tableauString = "";
         $tableauString = $tableauString . "<table>";
         $tableauString = $tableauString . "<thead>";
@@ -76,8 +76,10 @@ class LesInfractions {
         $tableauString = $tableauString . "<th>Véhicule</th>";
         $tableauString = $tableauString . "<th>Conducteur</th>";
         $tableauString = $tableauString . "<th>Montant total</th>";
-        $tableauString = $tableauString . "<th></th>";
-        $tableauString = $tableauString . "<th></th>";
+        if ($identifiants === "sudo") {
+            $tableauString = $tableauString . "<th></th>";
+            $tableauString = $tableauString . "<th></th>";
+        }
         $tableauString = $tableauString . "</thead>";
         $tableauString = $tableauString . "<tbody>";
         require_once("../model/LesDelits.php");
@@ -85,14 +87,16 @@ class LesInfractions {
         foreach ($this->infractionsTab as $lesInfractions) {
             $lesDelits -> fetchDelitByInfraction($lesInfractions -> getIdInf());
             $tableauString = $tableauString . "<tr>";
-            $tableauString = $tableauString . "<td>" . "<a href=\"../model/rien.php?op=ajout&num=" . urlencode($lesInfractions->getIdInf()) . "\"><img src=\"../view/assets/visu.png\"></a>" . "</td>"; //TODO changer le lien en attendant DJeanGab
+            $tableauString = $tableauString . "<td>" . "<a href=\"../model/detail.php?num=" . urlencode($lesInfractions->getIdInf()) . "\"><img src=\"../view/assets/visu.png\"></a>" . "</td>"; //TODO changer le lien en attendant DJeanGab
             $tableauString = $tableauString . "<td>" . $lesInfractions->getIdInf() . "</td>";
             $tableauString = $tableauString . "<td>" . $lesInfractions->getDateInf() . "</td>";
             $tableauString = $tableauString . "<td>" . $lesInfractions->getNoImmat() . "</td>";
             $tableauString = $tableauString . "<td>" . $lesInfractions->getNoPermis() . "</td>";
             $tableauString = $tableauString . "<td>" . $lesDelits->displayMontantTotalByLesDelits() . "</td>";
-            $tableauString = $tableauString . "<td>" . "<a href=\"../model/accueil.php?op=suppr&num=" . urlencode($lesInfractions->getIdInf()) . "\"><img src=\"../view/assets/corbeille.png\"></a>" . "</td>";
-            $tableauString = $tableauString . "<td>" . "<a href=\"../model/ajout.php?op=modif&num=" . urlencode($lesInfractions->getIdInf()) . "\"><img src=\"../view/assets/modification.png\"></a>" . "</td>";
+            if ($identifiants === "sudo") {
+                $tableauString = $tableauString . "<td>" . "<a href=\"../model/accueil.php?op=suppr&num=" . urlencode($lesInfractions->getIdInf()) . "\"><img src=\"../view/assets/corbeille.png\"></a>" . "</td>";
+                $tableauString = $tableauString . "<td>" . "<a href=\"../model/ajout.php?op=modif&num=" . urlencode($lesInfractions->getIdInf()) . "\"><img src=\"../view/assets/modification.png\"></a>" . "</td>";
+            }
             $tableauString = $tableauString . "</tr>";
         }
         $tableauString = $tableauString . "</tbody>";
@@ -100,7 +104,7 @@ class LesInfractions {
         return $tableauString;
     }
 
-    public function getIncrementatiobIdInf(): int { //todo plus tard optimisaton
+    public function getIncrementatiobIdInf(): int {
         $dbo = choixConnexion();
         $req = $dbo -> execSQL("SELECT MAX(id_inf) FROM infraction");
         unset($dbo);
@@ -126,7 +130,7 @@ class LesInfractions {
     public function addNewInfraction(int $id, $date, string $NoPermis, string $NoImmat) {
         $dbo = choixConnexion();
         if ($NoPermis === "") {
-            $dbo->execSQL("INSERT INTO infraction(id_inf, date_inf, no_immat) VALUES ($id, \"$date\", \"$NoImmat\")");
+            $dbo->execSQL("INSERT INTO infraction(id_inf, date_inf, no_immat, no_permis) VALUES ($id, \"$date\", \"$NoImmat\", \"\")");
         }
         else {
             $dbo->execSQL("INSERT INTO infraction(id_inf, date_inf, no_immat, no_permis) VALUES ($id, \"$date\", \"$NoImmat\", \"$NoPermis\")");
