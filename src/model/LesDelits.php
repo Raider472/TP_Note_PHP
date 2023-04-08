@@ -102,6 +102,7 @@ class LesDelits {
     public function displayDelitsByNoPermis(string $NoPermis): string {
         $dbo = choixConnexion();
         $req = $dbo -> execSQL("SELECT DISTINCT d.nature FROM delit d, infraction i, comprend c WHERE i.no_permis = \"$NoPermis\" AND d.id_delit = c.id_delit AND i.id_inf = c.id_inf");
+        unset($dbo);
         $arrayNatureDelit = [];
         foreach($req as $delits) {
             $arrayNatureDelit[] = "<br>";
@@ -113,6 +114,7 @@ class LesDelits {
     public function calculateurMontantTotal(int $getNum): int {
         $dbo = choixConnexion();
         $req = $dbo -> execSQL("SELECT DISTINCT d.montant FROM delit d, infraction i, comprend c WHERE i.id_inf = \"$getNum\" AND d.id_delit = c.id_delit AND i.id_inf = c.id_inf");
+        unset($dbo);
         $calculateur = 0;
         foreach($req as $unCalcul) {
             $calculateur += $unCalcul['montant'];
