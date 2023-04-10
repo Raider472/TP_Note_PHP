@@ -17,5 +17,5 @@ login : AZ99 (ou az99)
 mot de passe : camara
 
 lien DevWeb :
-https://devweb.iutmetz.univ-lorraine.fr/~nae1u/TP_NOTE_PHP
+https://devweb.iutmetz.univ-lorraine.fr/~nae1u/TP_Note_PHP/
 
