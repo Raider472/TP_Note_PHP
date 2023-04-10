@@ -57,5 +57,13 @@
             }
             return $selectString;
         }
+
+        public function returnArrayImmats(): array {
+            $arrayImmat = [];
+            foreach($this->vehiculeTab as $unVéhicule) {
+                $arrayImmat[] = $unVéhicule->getNoImmat();
+            }
+            return $arrayImmat;
+        }
     }
 ?>
