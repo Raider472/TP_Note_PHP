@@ -11,13 +11,18 @@
     $lesConducteurs = new LesConducteurs();
     $lesVehicules = new LesVéhicules();
 
-    $lesConducteurs->fetchConducteurByNoPermis($_SESSION['login']);
+    if (strtolower($_SESSION['login']) === "sudo") {
+        $utilisateurNom = "voici le détail de l'infraction";
+    }
+    else {
+        $lesConducteurs->fetchConducteurByNoPermis($_SESSION['login']);
+        $utilisateurNom = $lesConducteurs -> displayNomEtPrenomConducteur() . " , voici le détail de l'infraction que vous avez commise :";
+    }
     $lesDelits->fetchDelitByInfraction($_GET['num']);
     $lesInfractions->fetchInfractionById($_GET['num']);
     $lesVehicules->fetchVehiculesByNoImmat($lesInfractions->getInfractionsTab()[0]->getNoImmat());
 
     $numInfraction = $_GET['num'];
-    $utilisateurNom = $lesConducteurs -> displayNomEtPrenomConducteur();
     $dateInfraction = $lesInfractions -> getInfractionsTab()[0]->getDateInf();
     $userImmat = $lesVehicules -> getVehiculeTab()[0]->getNoImmat();
     $marqueVehicule = $lesVehicules -> getVehiculeTab()[0]->getMarque();

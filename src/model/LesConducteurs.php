@@ -13,7 +13,7 @@
 
         public function fetchAllConducteur() {
             $dbo = choixConnexion();
-            $requete = $dbo->execSQL("SELECT * FROM conducteur"); //Recupère tous les conducteur de la table Conducteur
+            $requete = $dbo->execSQL("SELECT * FROM conducteur WHERE NOT no_permis = \"SUDO\""); //Recupère tous les conducteur de la table Conducteur
             unset($dbo);
             $conducteur = [];
             foreach($requete as $lesrequeteTab) { //Créer les conducteurs grâce à la classe conducteur et les push dans l'array $conducteur

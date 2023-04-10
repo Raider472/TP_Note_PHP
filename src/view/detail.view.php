@@ -13,7 +13,7 @@
     </header>
     <section>
         <div id="content">
-            <h2><?= $utilisateurNom ?>, voici le détail de l'infraction que vous avez commise :</h2>
+            <h2><?= $utilisateurNom ?></h2>
             <p>Numéro d'infraction :</p>
             <span><?= $numInfraction ?></span>
             <p>Date d'infraction :</p>
