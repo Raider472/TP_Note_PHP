@@ -5,7 +5,7 @@
     require_once("../model/LesVéhicules.php");
     require_once("../model/LesDelits.php");
     require_once("../model/function/FonctionConnexion.php");
-    function validateDate($date, $format = 'Y-m-d'){ //Fonction pour verifier si la date est valide
+    function validateDate($date, $format = 'Y-m-d'){ // Fonction qui verifie si la date est valide.
         $d = DateTime::createFromFormat($format, $date);
         return $d && $d->format($format) === $date;
     }

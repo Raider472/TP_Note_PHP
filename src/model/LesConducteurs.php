@@ -13,10 +13,10 @@
 
         public function fetchAllConducteur() {
             $dbo = choixConnexion();
-            $requete = $dbo->execSQL("SELECT * FROM conducteur"); //Recupère tous les conducteur de la table Conducteur
+            $requete = $dbo->execSQL("SELECT * FROM conducteur"); //Recupère tous les conducteurs de la table Conducteur de la base de données.
             unset($dbo);
             $conducteur = [];
-            foreach($requete as $lesrequeteTab) { //Créer les conducteurs grâce à la classe conducteur et les push dans l'array $conducteur
+            foreach($requete as $lesrequeteTab) { // Créer les conducteurs grâce à la classe Conducteur et les insèrent dans l'array $conducteur
                 $conducteur[] = new Conducteur(
                     $lesrequeteTab["no_permis"],
                     $lesrequeteTab["date_permis"],
@@ -25,7 +25,6 @@
                     $lesrequeteTab["mdp_encrypter"]
                 );
             }
-            //echo $conducteur[1]->getMdp(); //Recupère et Affiche le mdp du deuxième conducteur
             $this->setArrayTab($conducteur);
         }
 
@@ -46,7 +45,7 @@
             $requete = $dbo->execSQL("SELECT * FROM conducteur WHERE no_permis = \"$noPermis\"");
             unset($dbo);
             $conducteur = [];
-            foreach($requete as $lesrequeteTab) { //Créer les conducteurs grâce à la classe conducteur et les push dans l'array $conducteur
+            foreach($requete as $lesrequeteTab) { // Crée les conducteurs grâce à la classe Conducteur et recherche le conducteur correspondant avec son numéro de permis, puis insère le résultat dans l'array $conducteur
                 $conducteur[] = new Conducteur(
                     $lesrequeteTab["no_permis"],
                     $lesrequeteTab["date_permis"],
@@ -58,7 +57,7 @@
             $this->setArrayTab($conducteur);
         }
 
-        public function displayAllConducteur() { //Pour display tous les conducteurs avec leur informations 
+        public function displayAllConducteur() { // Pour afficher toutes les informations des conducteurs  
             foreach ($this->conducteursTab as $LesConducteurs) {
                 echo "<p>" . $LesConducteurs->getNoPermis() . " | " . $LesConducteurs->getDatePermis() . " | " . $LesConducteurs->getNom() . " | " . $LesConducteurs->getPrenom() . " | " . $LesConducteurs->getMdp() . "</p>";
                 echo "<br>";

@@ -24,7 +24,7 @@
             <span><?= $marqueVehicule ?></span>
             <p>Modèle :</p>
             <span><?= $modeleVehicule ?></span>
-            <p id="detail">Details :</p>
+            <p id="detail">Détails :</p>
             <ul>
                 <?= $detailsDelits ?>
             </ul>
