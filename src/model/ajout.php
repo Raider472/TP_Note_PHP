@@ -71,7 +71,7 @@
             $verification = false;
         }
         if ($checkDelit === null || !isset($_POST["check_delit"])) {
-            $messageErreur .= "Veulliez selectionner au moins délit <br>";
+            $messageErreur .= "Veulliez selectionner au moins un délit <br>";
             $verification = false;
         }
         if ($verification === true) {
